@@ -10,9 +10,7 @@ export default function Home() {
         description="Provide solutions to problems using web applications, cloud technologies and AI."
         imageSrc="/joelle.jpg"
       />
-      <div className="container mx-auto p-4">
-        <ChatBot />
-      </div>
+      <ChatBot />
     </main>
   )
 }

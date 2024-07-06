@@ -32,12 +32,10 @@ const ChatBot: React.FC = () => {
     setMessages(prev => [...prev, newMessage]);
     setInput('');
 
-    // Here you would typically call your API
-    // For now, we'll just simulate a bot response
     setTimeout(() => {
       const botResponse: Message = {
         id: Date.now(),
-        text: "This is a simulated response from the bot.",
+        text: "This is a simulated response from Lenda.",
         sender: 'bot',
       };
       setMessages(prev => [...prev, botResponse]);
@@ -45,46 +43,58 @@ const ChatBot: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col h-[600px] max-w-lg mx-auto border rounded-lg overflow-hidden">
-      <div className="bg-blue-600 text-white p-4">
-        <h2 className="text-xl font-bold">Chat with Bot</h2>
-      </div>
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((message) => (
-          <div 
-            key={message.id} 
-            className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-          >
-            <div 
-              className={`max-w-xs p-3 rounded-lg ${
-                message.sender === 'user' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-800'
-              }`}
-            >
-              {message.text}
-            </div>
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </div>
-      <form onSubmit={handleSend} className="p-4 border-t">
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="flex-1 p-2 border rounded"
-            placeholder="Type your message..."
-          />
-          <button 
-            type="submit" 
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-          >
-            Send
-          </button>
+    <div className="flex">
+      <div className="flex-1 flex items-center justify-end p-8">
+        <div className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg max-w-md">
+          <h2 className="text-3xl font-bold mb-4 text-purple-800">Meet Lenda</h2>
+          <p className="text-lg text-gray-700">
+            This is my AI assistant Lenda. You can ask anything about me, and Lenda will be happy to help!
+          </p>
         </div>
-      </form>
+      </div>
+      <div className="flex-1 flex items-center justify-start p-8">
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-md">
+          <div className="bg-purple-600 text-white p-4">
+            <h2 className="text-xl font-bold">Chat with Lenda</h2>
+          </div>
+          <div className="h-96 overflow-y-auto p-4 space-y-4">
+            {messages.map((message) => (
+              <div 
+                key={message.id} 
+                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div 
+                  className={`max-w-xs p-3 rounded-lg ${
+                    message.sender === 'user' 
+                      ? 'bg-purple-500 text-white' 
+                      : 'bg-gray-200 text-gray-800'
+                  }`}
+                >
+                  {message.text}
+                </div>
+              </div>
+            ))}
+            <div ref={messagesEndRef} />
+          </div>
+          <form onSubmit={handleSend} className="p-4 border-t">
+            <div className="flex space-x-2">
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="flex-1 p-2 border rounded"
+                placeholder="Ask Lenda anything..."
+              />
+              <button 
+                type="submit" 
+                className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition"
+              >
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
